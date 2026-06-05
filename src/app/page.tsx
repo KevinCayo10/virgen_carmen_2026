@@ -1,7 +1,5 @@
 import { Hero } from "@/components/landing/hero";
-import { Prizes } from "@/components/landing/prizes";
-import { Criteria } from "@/components/landing/criteria";
-import { RegistrationForm } from "@/components/landing/registration-form";
+import { RegistrationSection } from "@/components/landing/registration-section";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { HashScroll } from "@/components/shared/hash-scroll";
@@ -15,9 +13,7 @@ export default function HomePage() {
         <section id="inicio">
           <Hero />
         </section>
-        <Prizes />
-        <Criteria />
-        <RegistrationForm />
+        <RegistrationSection />
       </main>
       <Footer />
     </>

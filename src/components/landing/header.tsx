@@ -7,9 +7,7 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
-  { href: '#premios', label: 'Premios' },
-  { href: '#criterios', label: 'Criterios' },
-  { href: '#registro', label: 'Inscripción' },
+  { href: '#inscripciones', label: 'Inscripciones' },
 ];
 
 export function Header() {
@@ -66,8 +64,8 @@ export function Header() {
             </a>
           ))}
           <a
-            href="#registro"
-            onClick={(e) => { e.preventDefault(); scrollTo('#registro'); }}
+            href="#inscripciones"
+            onClick={(e) => { e.preventDefault(); scrollTo('#inscripciones'); }}
             className="inline-flex items-center justify-center h-8 rounded-md px-3 text-xs font-medium bg-amber-500 hover:bg-amber-400 text-blue-950 font-semibold transition-colors"
           >
             Inscribirse
@@ -100,8 +98,8 @@ export function Header() {
               </a>
             ))}
             <a
-              href="#registro"
-              onClick={(e) => { e.preventDefault(); scrollTo('#registro'); }}
+              href="#inscripciones"
+              onClick={(e) => { e.preventDefault(); scrollTo('#inscripciones'); }}
               className="block w-full text-center px-3 py-2 text-sm font-medium bg-amber-500 hover:bg-amber-400 text-blue-950 rounded-lg transition-colors mt-2"
             >
               Inscribirse

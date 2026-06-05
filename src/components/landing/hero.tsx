@@ -6,7 +6,7 @@ import { EVENT_DATE, EVENT_TIME, EVENT_START_LOCATION, EVENT_END_LOCATION, EVENT
 
 export function Hero() {
   const scrollToForm = () => {
-    document.getElementById('registro')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('inscripciones')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (

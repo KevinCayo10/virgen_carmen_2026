@@ -3,7 +3,7 @@
 import { useActionState, startTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2, CheckCircle2, AlertCircle, Phone, MapPin, Building2 } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/card';
 import { registrationSchema, type RegistrationFormData } from '@/lib/schemas';
 import { submitRegistration, type RegistrationResult } from '@/lib/actions/registration';
-import { MIN_PARTICIPANTS, MAX_PARTICIPANTS, ORGANIZER, CONTACT_PHONE, CONTACT_WHATSAPP } from '@/lib/constants';
+import { MIN_PARTICIPANTS, MAX_PARTICIPANTS } from '@/lib/constants';
 
 const initialState: RegistrationResult = {
   success: false,
@@ -65,74 +65,46 @@ export function RegistrationForm() {
 
   if (state.success) {
     return (
-      <section id="registro" className="py-20 px-4 bg-gradient-to-b from-amber-50 to-white">
-        <div className="max-w-lg mx-auto text-center">
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-green-200">
-            <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">¡Inscripción Exitosa!</h2>
-            <p className="text-gray-600 mb-4">
-              Su inscripción ha sido registrada correctamente.
-            </p>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-              <p className="text-sm text-green-700 mb-1">Número de inscripción:</p>
-              <p className="text-2xl font-bold text-green-800 font-mono">
-                {state.registration_number}
-              </p>
-            </div>
-            <p className="text-sm text-gray-500">
-              Guarde su número de inscripción para futuras referencias.
-            </p>
-          </div>
+      <div className="bg-white rounded-2xl shadow-xl p-8 border border-green-200 text-center">
+        <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">¡Inscripción Exitosa!</h2>
+        <p className="text-gray-600 mb-4">
+          Su inscripción ha sido registrada correctamente.
+        </p>
+        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+          <p className="text-sm text-green-700 mb-1">Número de inscripción:</p>
+          <p className="text-2xl font-bold text-green-800 font-mono">
+            {state.registration_number}
+          </p>
         </div>
-      </section>
+        <p className="text-sm text-gray-500">
+          Guarde su número de inscripción para futuras referencias.
+        </p>
+      </div>
     );
   }
 
   return (
-    <section id="registro" className="py-20 px-4 bg-gradient-to-b from-amber-50 to-white scroll-mt-20">
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-950 mb-4">
-            Formulario de Inscripción
-          </h2>
-          <p className="text-gray-600 max-w-lg mx-auto mb-4">
-            Complete todos los campos obligatorios para participar en el Pregón Cultural
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500 mb-2">
-            <span className="inline-flex items-center gap-1">
-              <Building2 className="w-4 h-4 text-amber-500" />
-              {ORGANIZER}
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <MapPin className="w-4 h-4 text-amber-500" />
-              Puerto Quito
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <Phone className="w-4 h-4 text-amber-500" />
-              <a href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="hover:text-amber-500 transition-colors">{CONTACT_PHONE}</a>
-            </span>
+    <>
+      {serverErrors._form && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
+          <div>
+            {serverErrors._form.map((err, i) => (
+              <p key={i} className="text-sm text-red-700">{err}</p>
+            ))}
           </div>
         </div>
+      )}
 
-        {serverErrors._form && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
-            <div>
-              {serverErrors._form.map((err, i) => (
-                <p key={i} className="text-sm text-red-700">{err}</p>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <Card className="border-amber-200 shadow-xl">
-          <CardHeader className="bg-gradient-to-r from-blue-950 to-blue-900 text-white rounded-t-xl">
-            <CardTitle>Información del Grupo</CardTitle>
-            <CardDescription className="text-blue-200">
-              Datos del representante y grupo participante
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="pt-6 space-y-6">
+      <Card className="border-amber-200 shadow-xl">
+        <CardHeader className="bg-gradient-to-r from-blue-950 to-blue-900 text-white rounded-t-xl">
+          <CardTitle>Información del Grupo</CardTitle>
+          <CardDescription className="text-blue-200">
+            Datos del representante y grupo participante
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="pt-6 space-y-6">
             <form
               className="space-y-6"
               onSubmit={(e) => {
@@ -350,8 +322,7 @@ export function RegistrationForm() {
               </Button>
             </form>
           </CardContent>
-        </Card>
-      </div>
-    </section>
+      </Card>
+    </>
   );
 }
