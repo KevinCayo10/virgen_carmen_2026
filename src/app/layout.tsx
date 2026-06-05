@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   },
   description:
     "Formulario de inscripción para el Pregón Cultural por las Fiestas Patronales Virgen del Carmen 2026 en Puerto Quito.",
+  icons: {
+    icon: "/icon.jpg",
+    apple: "/icon.jpg",
+  },
 };
 
 export default function RootLayout({

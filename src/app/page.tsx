@@ -14,6 +14,13 @@ export default function HomePage() {
           <Hero />
         </section>
         <RegistrationSection />
+        <div className="relative w-full h-48 md:h-72 bg-blue-950">
+          <img
+            src="/banner.png"
+            alt="Pregón Cultural Virgen del Carmen 2026"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </main>
       <Footer />
     </>
