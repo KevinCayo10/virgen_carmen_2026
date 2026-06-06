@@ -97,7 +97,7 @@ export function RegistrationForm() {
         </div>
       )}
 
-      <Card className="border-amber-200 shadow-xl">
+      <Card id="formulario" className="border-amber-200 shadow-xl">
         <CardHeader className="bg-gradient-to-r from-blue-950 to-blue-900 text-white rounded-t-xl">
           <CardTitle>Información del Grupo</CardTitle>
           <CardDescription className="text-blue-200">

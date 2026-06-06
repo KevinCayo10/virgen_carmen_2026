@@ -23,8 +23,11 @@ export function Header() {
   const scrollTo = (href: string) => {
     setIsMobileOpen(false);
     const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    el?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById(id === 'inscripciones' ? 'formulario' : id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
     window.history.pushState(null, '', href);
   };
 

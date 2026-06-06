@@ -22,9 +22,11 @@ import {
 
 export function Hero() {
   const scrollToForm = () => {
-    document
-      .getElementById("inscripciones")
-      ?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById("formulario");
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   };
 
   return (
@@ -69,12 +71,12 @@ export function Hero() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-6">
           <div className="flex items-center gap-2 justify-center text-white/80">
-            <ArrowDown className="w-5 h-5 text-amber-400 shrink-0" />
-            <span className="text-sm">{EVENT_END_LOCATION}</span>
-          </div>
-          <div className="flex items-center gap-2 justify-center text-white/80">
             <MapPin className="w-5 h-5 text-amber-400 shrink-0" />
             <span className="text-sm">{EVENT_START_LOCATION}</span>
+          </div>
+          <div className="flex items-center gap-2 justify-center text-white/80">
+            <ArrowDown className="w-5 h-5 text-amber-400 shrink-0" />
+            <span className="text-sm">{EVENT_END_LOCATION}</span>
           </div>
 
           <div className="flex items-center gap-2 justify-center text-white/80">
