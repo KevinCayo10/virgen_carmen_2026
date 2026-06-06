@@ -3,7 +3,7 @@
 import { useActionState, startTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Loader2, CheckCircle2, AlertCircle, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -77,9 +77,17 @@ export function RegistrationForm() {
             {state.registration_number}
           </p>
         </div>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 mb-6">
           Guarde su número de inscripción para futuras referencias.
         </p>
+        <Button
+          onClick={() => window.location.reload()}
+          variant="outline"
+          className="border-amber-300 text-amber-700 hover:bg-amber-50"
+        >
+          <PlusCircle className="w-4 h-4 mr-2" />
+          Registrar nuevo grupo
+        </Button>
       </div>
     );
   }
@@ -160,6 +168,7 @@ export function RegistrationForm() {
                       id="phone"
                       {...register('phone')}
                       placeholder="+593 99 999 9999"
+                      maxLength={20}
                       className={errors.phone || serverErrors.phone ? 'border-red-500' : ''}
                     />
                     {errors.phone && (
@@ -275,6 +284,7 @@ export function RegistrationForm() {
                       {...register('observations')}
                       placeholder="Información adicional (opcional)"
                       rows={3}
+                      maxLength={255}
                     />
                     {errors.observations && (
                       <p className="text-sm text-red-500 mt-1">{errors.observations.message}</p>

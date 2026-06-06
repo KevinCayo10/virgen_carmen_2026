@@ -36,7 +36,7 @@ export const registrationSchema = z.object({
   }),
   observations: z
     .string()
-    .max(500, 'Las observaciones no pueden exceder 500 caracteres')
+    .max(255, 'Las observaciones no pueden exceder 255 caracteres')
     .optional()
     .or(z.literal('')),
   consent: z.literal(true, { error: 'Debe aceptar el consentimiento' }),
