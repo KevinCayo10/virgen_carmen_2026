@@ -16,7 +16,6 @@ import {
   Search,
   Download,
   FileSpreadsheet,
-  FileText,
   Eye,
   CheckCircle2,
   XCircle,
@@ -190,40 +189,48 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
     }
   };
 
-  const exportToCSV = () => {
+  const CATEGORIAS = { danza_ninos: 'Danza Niños', danza_general: 'Danza General' };
+  const STATUS_MAP = { pending: 'Pendiente', approved: 'Aprobado', rejected: 'Rechazado' };
+
+  const exportToPDF = async () => {
+    const { default: jsPDF } = await import('jspdf');
+    const autoTable = (await import('jspdf-autotable')).default;
+
+    const doc = new jsPDF('landscape');
+    const title = 'Participantes - Pregón Cultural Virgen del Carmen 2026';
+    doc.setFontSize(14);
+    doc.text(title, 14, 15);
+    doc.setFontSize(8);
+    doc.text(`Generado: ${new Date().toLocaleDateString('es-EC')}`, 14, 21);
+
     const headers = [
-      'N° Inscripción', 'Grupo', 'Representante', 'Teléfono', 'Email',
-      'Categoría', 'Participantes', 'Música', 'Carro Alegórico',
-      'Observaciones', 'Estado', 'Fecha de registro',
+      ['N°', 'Inscripción', 'Grupo', 'Representante', 'Teléfono',
+       'Categoría', 'Participantes', 'Música', 'Carro', 'Estado', 'Fecha'],
     ];
 
-    const rows = participants.map(p => [
+    const rows = participants.map((p, i) => [
+      i + 1,
       p.registration_number,
       p.group_name,
       p.representative_name,
       p.phone,
-      p.email ?? '',
-      categoryLabels[p.category] ?? p.category,
+      CATEGORIAS[p.category] || p.category,
       p.participants_count.toString(),
       p.music_name,
       p.has_float ? 'Sí' : 'No',
-      p.observations ?? '',
-      statusLabels[p.status] ?? p.status,
+      STATUS_MAP[p.status] || p.status,
       formatDate(p.created_at),
     ]);
 
-    const csvContent = [
-      headers.join(','),
-      ...rows.map(row => row.map(cell => `"${cell.replace(/"/g, '""')}"`).join(',')),
-    ].join('\n');
+    autoTable(doc, {
+      head: headers,
+      body: rows,
+      startY: 25,
+      styles: { fontSize: 6 },
+      headStyles: { fillColor: [23, 37, 84] },
+    });
 
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `participantes-${new Date().toISOString().split('T')[0]}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+    doc.save(`participantes-${new Date().toISOString().split('T')[0]}.pdf`);
   };
 
   const exportToExcel = async () => {
@@ -296,9 +303,9 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
           </Select>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={exportToCSV}>
-            <FileText className="w-4 h-4 mr-2" />
-            CSV
+          <Button variant="outline" size="sm" onClick={exportToPDF}>
+            <Download className="w-4 h-4 mr-2" />
+            PDF
           </Button>
           <Button variant="outline" size="sm" onClick={exportToExcel}>
             <FileSpreadsheet className="w-4 h-4 mr-2" />
