@@ -241,11 +241,11 @@ export function RegistrationForm() {
                   </div>
 
                   <div>
-                    <Label htmlFor="music_name">Nombre de la música folclórica *</Label>
+                    <Label htmlFor="music_name">Nombre de la música folklórica *</Label>
                     <Input
                       id="music_name"
                       {...register('music_name')}
-                      placeholder="Nombre de la canción o pieza musical folclórica"
+                      placeholder="Nombre de la canción o pieza musical folklórica"
                       className={errors.music_name || serverErrors.music_name ? 'border-red-500' : ''}
                     />
                     {errors.music_name && (

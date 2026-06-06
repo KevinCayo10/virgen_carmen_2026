@@ -33,11 +33,13 @@ export const FLOAT_PRIZES = [
 ];
 
 export const DANCE_CRITERIA = [
-  'Estética y coordinación de los integrantes',
+    'Música folklórica',
   'Cantidad de integrantes (mínimo 12, máximo 20)',
   'Vestimenta de los participantes',
   'Tiempo de presentación mínimo 3 minutos y máximo 5 minutos',
-  'Música folclórica',
+  'Estética y coordinación de los integrantes',
+
+
 ];
 
 export const FLOAT_CRITERIA = [

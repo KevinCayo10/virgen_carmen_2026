@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     "virgen del carmen",
     "puerto quito",
     "fiestas patronales",
-    "danza folclórica",
+    "danza folklórica",
     "inscripción danza",
     "colonia cotopaxense",
     "carro alegórico",
