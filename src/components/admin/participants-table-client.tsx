@@ -172,20 +172,20 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
 
   const handleDelete = async (id: string) => {
     const result = await Swal.fire({
-      title: '¿Eliminar inscripción?',
-      text: 'Esta acción no se puede deshacer.',
+      title: '¿Desactivar inscripción?',
+      text: 'El registro se ocultará del panel activo.',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#dc2626',
       cancelButtonColor: '#6b7280',
-      confirmButtonText: 'Sí, eliminar',
+      confirmButtonText: 'Sí, desactivar',
       cancelButtonText: 'Cancelar',
     });
     if (result.isConfirmed) {
       await deleteParticipant(id);
       Swal.fire({
-        title: 'Eliminado',
-        text: 'La inscripción ha sido eliminada correctamente.',
+        title: 'Desactivado',
+        text: 'La inscripción ha sido desactivada.',
         icon: 'success',
         timer: 2000,
         showConfirmButton: false,
@@ -418,7 +418,7 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
                         size="icon"
                         className="h-8 w-8 text-gray-400 hover:text-red-600"
                         onClick={() => handleDelete(row.original.id)}
-                        title="Eliminar"
+                        title="Desactivar"
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>

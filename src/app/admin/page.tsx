@@ -13,7 +13,8 @@ export default async function AdminDashboardPage() {
 
   const { data: allParticipants } = await supabase
     .from('participants')
-    .select('category, status, has_float');
+    .select('category, status, has_float')
+    .eq('active', true);
 
   const stats = {
     total: allParticipants?.length ?? 0,

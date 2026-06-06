@@ -39,7 +39,8 @@ export async function listParticipants(
 
   let query = supabase
     .from('participants')
-    .select('*', { count: 'exact' });
+    .select('*', { count: 'exact' })
+    .eq('active', true);
 
   // Apply filters
   if (filters.search) {
@@ -121,7 +122,7 @@ export async function deleteParticipant(
 
   const { error } = await supabase
     .from('participants')
-    .delete()
+    .update({ active: false })
     .eq('id', id);
 
   if (error) {
@@ -138,7 +139,8 @@ export async function getDashboardStats(): Promise<DashboardStats> {
 
   const { data: allParticipants, error } = await supabase
     .from('participants')
-    .select('category, status, has_float');
+    .select('category, status, has_float')
+    .eq('active', true);
 
   if (error) {
     console.error('Error fetching stats:', error);
@@ -164,6 +166,7 @@ export async function exportAllParticipants(): Promise<Participant[]> {
   const { data, error } = await supabase
     .from('participants')
     .select('*')
+    .eq('active', true)
     .order('created_at', { ascending: false });
 
   if (error) {

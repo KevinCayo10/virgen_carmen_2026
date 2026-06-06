@@ -15,6 +15,7 @@ export interface Participant {
   has_float: boolean;
   observations: string | null;
   status: ParticipantStatus;
+  active: boolean;
   created_at: string;
   updated_at: string;
 }

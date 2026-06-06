@@ -8,6 +8,7 @@ export async function ParticipantsTable() {
   const { data } = await supabase
     .from('participants')
     .select('*')
+    .eq('active', true)
     .order('created_at', { ascending: false });
 
   return <ParticipantsTableClient participants={(data as Participant[]) ?? []} />;
