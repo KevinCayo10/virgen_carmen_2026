@@ -1,4 +1,4 @@
-import { CalendarDays, MapPin, Clock, ArrowDown, Phone, Building2, Trophy, Users, Sparkles, CheckCircle2, Palette, Shirt, Lightbulb, FileText } from 'lucide-react';
+import { CalendarDays, MapPin, Clock, Phone, Building2, Trophy, Users, Sparkles, CheckCircle2, Palette, Lightbulb, Flag } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { RegistrationForm } from '@/components/landing/registration-form';
@@ -21,59 +21,78 @@ export function RegistrationSection() {
           </p>
           <Card className="border-amber-200 shadow-sm mb-8">
             <CardContent className="p-6">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-amber-100 shrink-0">
-                    <Building2 className="w-4 h-4 text-amber-600" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Col 1: Organiza + Fecha */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-amber-100 shrink-0">
+                      <Building2 className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div className="text-left min-w-0">
+                      <p className="text-xs text-gray-400">Organiza</p>
+                      <p className="text-sm font-semibold text-gray-800">{ORGANIZER}</p>
+                    </div>
                   </div>
-                  <div className="text-left min-w-0">
-                    <p className="text-xs text-gray-400">Organiza</p>
-                    <p className="text-sm font-semibold text-gray-800">{ORGANIZER}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-amber-100 shrink-0">
-                    <CalendarDays className="w-4 h-4 text-amber-600" />
-                  </div>
-                  <div className="text-left min-w-0">
-                    <p className="text-xs text-gray-400">Fecha</p>
-                    <p className="text-sm font-semibold text-gray-800">{EVENT_DATE}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-amber-100 shrink-0">
-                    <Clock className="w-4 h-4 text-amber-600" />
-                  </div>
-                  <div className="text-left min-w-0">
-                    <p className="text-xs text-gray-400">Hora</p>
-                    <p className="text-sm font-semibold text-gray-800">{EVENT_TIME}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-amber-100 shrink-0">
+                      <CalendarDays className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div className="text-left min-w-0">
+                      <p className="text-xs text-gray-400">Fecha</p>
+                      <p className="text-sm font-semibold text-gray-800">{EVENT_DATE}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-amber-100 shrink-0">
-                    <Phone className="w-4 h-4 text-amber-600" />
+
+                {/* Col 2: Hora + Contacto */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-amber-100 shrink-0">
+                      <Clock className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div className="text-left min-w-0">
+                      <p className="text-xs text-gray-400">Hora</p>
+                      <p className="text-sm font-semibold text-gray-800">{EVENT_TIME}</p>
+                    </div>
                   </div>
-                  <div className="text-left min-w-0">
-                    <p className="text-xs text-gray-400">Contacto</p>
-                    <a href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-600 hover:text-blue-800">{CONTACT_PHONE}</a>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-amber-100 shrink-0">
+                      <Phone className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div className="text-left min-w-0">
+                      <p className="text-xs text-gray-400">Contacto</p>
+                      <a href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-600 hover:text-blue-800">{CONTACT_PHONE}</a>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-amber-100 shrink-0">
-                    <ArrowDown className="w-4 h-4 text-amber-600" />
-                  </div>
-                  <div className="text-left min-w-0">
-                    <p className="text-xs text-gray-400">Salida</p>
-                    <p className="text-sm font-semibold text-gray-800">{EVENT_START_LOCATION}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-amber-100 shrink-0">
-                    <MapPin className="w-4 h-4 text-amber-600" />
-                  </div>
-                  <div className="text-left min-w-0">
-                    <p className="text-xs text-gray-400">Llegada</p>
-                    <p className="text-sm font-semibold text-gray-800">{EVENT_END_LOCATION}</p>
+
+                {/* Col 3: Route */}
+                <div className="flex items-center justify-center md:justify-start border-t md:border-t-0 md:border-l border-amber-200 pt-4 md:pt-0 md:pl-6">
+                  <div className="flex items-start gap-3">
+                    <div className="flex flex-col items-center">
+                      <div className="p-1.5 rounded-full bg-green-100">
+                        <Flag className="w-4 h-4 text-green-600" />
+                      </div>
+                      <div className="w-0.5 h-12 bg-gradient-to-b from-amber-400 to-amber-300" />
+                      <div className="p-1.5 rounded-full bg-blue-100">
+                        <MapPin className="w-4 h-4 text-blue-600" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="h-[24px] flex items-center">
+                        <div>
+                          <p className="text-xs text-gray-400">Salida</p>
+                          <p className="text-sm font-semibold text-gray-800">{EVENT_START_LOCATION}</p>
+                        </div>
+                      </div>
+                      <div className="h-[48px]" />
+                      <div className="h-[24px] flex items-center">
+                        <div>
+                          <p className="text-xs text-gray-400">Llegada</p>
+                          <p className="text-sm font-semibold text-gray-800">{EVENT_END_LOCATION}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
