@@ -34,12 +34,14 @@ export function Hero() {
       <img
         src="/background-mobile.jpeg"
         alt=""
+        loading="lazy"
         className="absolute inset-0 w-full h-full object-cover md:hidden"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-blue-950/80 via-blue-900/70 to-amber-900/80 md:hidden" />
       <img
         src="/hero-bg.png"
         alt=""
+        loading="lazy"
         className="absolute inset-0 w-full h-full object-cover hidden md:block"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-blue-950/70 via-blue-900/60 to-amber-900/70 hidden md:block" />

@@ -19,6 +19,7 @@ export default function HomePage() {
           <img
             src="/banner.png"
             alt="Pregón Cultural Virgen del Carmen 2026"
+            loading="lazy"
             className="w-full h-full object-cover"
           />
         </div>

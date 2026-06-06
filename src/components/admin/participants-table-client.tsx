@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Swal from 'sweetalert2';
 import {
   useReactTable,
   getCoreRowModel,
@@ -167,8 +168,25 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
   };
 
   const handleDelete = async (id: string) => {
-    if (window.confirm('¿Está seguro de eliminar esta inscripción?')) {
+    const result = await Swal.fire({
+      title: '¿Eliminar inscripción?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#6b7280',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    });
+    if (result.isConfirmed) {
       await deleteParticipant(id);
+      Swal.fire({
+        title: 'Eliminado',
+        text: 'La inscripción ha sido eliminada correctamente.',
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false,
+      });
     }
   };
 

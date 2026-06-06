@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { EVENT_NAME } from "@/lib/constants";
+import { EVENT_NAME, ORGANIZER, EVENT_LOCATION } from "@/lib/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,16 +13,65 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = EVENT_NAME;
+const description =
+  "Formulario de inscripción para el Pregón Cultural por las Fiestas Patronales Virgen del Carmen 2026 en Puerto Quito. Participe con su grupo de danza folclórica.";
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://pregoncultural2026.vercel.app";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#172554",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: {
-    default: EVENT_NAME,
-    template: `%s | ${EVENT_NAME}`,
+    default: title,
+    template: `%s | ${title}`,
   },
-  description:
-    "Formulario de inscripción para el Pregón Cultural por las Fiestas Patronales Virgen del Carmen 2026 en Puerto Quito.",
+  description,
   icons: {
     icon: "/icon.jpg",
     apple: "/icon.jpg",
+  },
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    locale: "es_EC",
+    siteName: title,
+    url: "/",
+    images: [
+      {
+        url: "/hero-bg.png",
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/hero-bg.png"],
+  },
+  keywords: [
+    "pregón cultural",
+    "virgen del carmen",
+    "puerto quito",
+    "fiestas patronales",
+    "danza folclórica",
+    "inscripción danza",
+    "colonia cotopaxense",
+    "carro alegórico",
+    "2026",
+  ],
+  authors: [{ name: ORGANIZER }],
+  robots: "index, follow",
+  alternates: {
+    canonical: "/",
   },
 };
 
