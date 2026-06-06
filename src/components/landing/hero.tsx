@@ -11,12 +11,22 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-950 via-blue-900 to-amber-900 overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,215,0,0.3) 0%, transparent 50%),
-                            radial-gradient(circle at 75% 75%, rgba(255,215,0,0.3) 0%, transparent 50%)`
-        }} />
-      </div>
+      {/* Mobile background image */}
+      <img
+        src="/background-mobile.jpeg"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover md:hidden"
+      />
+      {/* Overlay for mobile */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-950/80 via-blue-900/70 to-amber-900/80 md:hidden" />
+      {/* Desktop background image */}
+      <img
+        src="/hero-bg.png"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover hidden md:block"
+      />
+      {/* Overlay for desktop */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-950/70 via-blue-900/60 to-amber-900/70 hidden md:block" />
 
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <div className="mb-4">

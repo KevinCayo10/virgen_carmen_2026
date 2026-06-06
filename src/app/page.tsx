@@ -3,6 +3,7 @@ import { RegistrationSection } from "@/components/landing/registration-section";
 import { Header } from "@/components/landing/header";
 import { Footer } from "@/components/landing/footer";
 import { HashScroll } from "@/components/shared/hash-scroll";
+import { WhatsAppFloat } from "@/components/shared/whatsapp-float";
 
 export default function HomePage() {
   return (
@@ -23,6 +24,7 @@ export default function HomePage() {
         </div>
       </main>
       <Footer />
+      <WhatsAppFloat />
     </>
   );
 }
