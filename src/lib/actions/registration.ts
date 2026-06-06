@@ -47,24 +47,6 @@ export async function submitRegistration(
 
   const supabase = await createClient();
 
-  // Rate limit: check if same phone submitted in last 60 seconds
-  const oneMinuteAgo = new Date(Date.now() - 60_000).toISOString();
-  const { data: recent } = await supabase
-    .from('participants')
-    .select('id')
-    .eq('phone', sanitize(data.phone))
-    .gte('created_at', oneMinuteAgo)
-    .maybeSingle();
-
-  if (recent) {
-    return {
-      success: false,
-      errors: {
-        phone: ['Ya existe una inscripción con este número en el último minuto. Por favor espere.'],
-      },
-    };
-  }
-
   // Generate registration number
   const { count } = await supabase
     .from('participants')

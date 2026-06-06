@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import {
   useReactTable,
@@ -23,6 +24,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowUpDown,
+  RefreshCw,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,6 +73,7 @@ const statusLabels: Record<string, string> = {
 };
 
 export function ParticipantsTableClient({ participants }: { participants: Participant[] }) {
+  const router = useRouter();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
@@ -109,7 +112,8 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
         header: 'Participantes',
       },
       {
-        accessorKey: 'has_float',
+        id: 'has_float',
+        accessorFn: (row: Participant) => row.has_float ? 'si' : 'no',
         header: 'Carro',
         cell: ({ row }: { row: { original: Participant } }) => (
           row.original.has_float ? <Badge variant="success">Sí</Badge> : <Badge variant="secondary">No</Badge>
@@ -196,6 +200,8 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
     const { default: jsPDF } = await import('jspdf');
     const autoTable = (await import('jspdf-autotable')).default;
 
+    const filteredRows = table.getFilteredRowModel().rows.map(r => r.original);
+
     const doc = new jsPDF('landscape');
     const title = 'Participantes - Pregón Cultural Virgen del Carmen 2026';
     doc.setFontSize(14);
@@ -208,7 +214,7 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
        'Categoría', 'Participantes', 'Música', 'Carro', 'Estado', 'Fecha'],
     ];
 
-    const rows = participants.map((p, i) => [
+    const rows = filteredRows.map((p, i) => [
       i + 1,
       p.registration_number,
       p.group_name,
@@ -235,7 +241,8 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
 
   const exportToExcel = async () => {
     const XLSX = await import('xlsx');
-    const data = participants.map(p => ({
+    const filteredRows = table.getFilteredRowModel().rows.map(r => r.original);
+    const data = filteredRows.map(p => ({
       'N° Inscripción': p.registration_number,
       Grupo: p.group_name,
       Representante: p.representative_name,
@@ -301,6 +308,30 @@ export function ParticipantsTableClient({ participants }: { participants: Partic
               <SelectItem value="rejected">Rechazado</SelectItem>
             </SelectContent>
           </Select>
+          <Select
+            value={(table.getColumn('has_float')?.getFilterValue() as string) ?? ''}
+            onValueChange={(value) =>
+              table.getColumn('has_float')?.setFilterValue(value || undefined)
+            }
+          >
+            <SelectTrigger className="w-[160px]">
+              <SelectValue placeholder="Carro Alegórico" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value=" ">Todos</SelectItem>
+              <SelectItem value="si">Sí</SelectItem>
+              <SelectItem value="no">No</SelectItem>
+            </SelectContent>
+          </Select>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => router.refresh()}
+            title="Recargar datos"
+            className="shrink-0"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </Button>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={exportToPDF}>
