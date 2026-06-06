@@ -19,7 +19,7 @@ export const CATEGORIES = {
     ],
   },
   danza_general: {
-    label: 'Danza General (13 años en adelante)',
+    label: 'Danza General',
     prizes: [
       { place: 'Primer lugar', amount: 'USD 150' },
       { place: 'Segundo lugar', amount: 'USD 75' },
@@ -37,6 +37,7 @@ export const DANCE_CRITERIA = [
   'Cantidad de integrantes (mínimo 12, máximo 20)',
   'Vestimenta de los participantes',
   'Tiempo de presentación mínimo 3 minutos y máximo 5 minutos',
+  'Música folclórica',
 ];
 
 export const FLOAT_CRITERIA = [

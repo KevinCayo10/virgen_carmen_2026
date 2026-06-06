@@ -199,7 +199,7 @@ export function RegistrationForm() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="danza_ninos">Danza Niños (3 a 12 años)</SelectItem>
-                        <SelectItem value="danza_general">Danza General (13 años en adelante)</SelectItem>
+                        <SelectItem value="danza_general">Danza General </SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.category && (
@@ -236,7 +236,7 @@ export function RegistrationForm() {
                     <Input
                       id="music_name"
                       {...register('music_name')}
-                      placeholder="Nombre de la canción o pieza musical"
+                      placeholder="Nombre de la canción o pieza musical folclórica"
                       className={errors.music_name || serverErrors.music_name ? 'border-red-500' : ''}
                     />
                     {errors.music_name && (
