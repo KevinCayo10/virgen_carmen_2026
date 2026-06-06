@@ -1,23 +1,51 @@
-import { CalendarDays, MapPin, Clock, Phone, Building2, Trophy, Users, Sparkles, CheckCircle2, Palette, Lightbulb, Flag } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { RegistrationForm } from '@/components/landing/registration-form';
 import {
-  EVENT_DATE, EVENT_TIME, EVENT_START_LOCATION, EVENT_END_LOCATION,
-  ORGANIZER, CONTACT_PHONE, CONTACT_WHATSAPP,
-  CATEGORIES, DANCE_CRITERIA, FLOAT_CRITERIA,
-} from '@/lib/constants';
+  CalendarDays,
+  MapPin,
+  Clock,
+  Phone,
+  Building2,
+  Trophy,
+  Users,
+  Sparkles,
+  CheckCircle2,
+  Palette,
+  Lightbulb,
+  Flag,
+} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { RegistrationForm } from "@/components/landing/registration-form";
+import {
+  EVENT_DATE,
+  EVENT_TIME,
+  EVENT_START_LOCATION,
+  EVENT_END_LOCATION,
+  ORGANIZER,
+  CONTACT_PHONE,
+  CONTACT_WHATSAPP,
+  CATEGORIES,
+  DANCE_CRITERIA,
+  FLOAT_CRITERIA,
+} from "@/lib/constants";
 
 export function RegistrationSection() {
   return (
-    <section id="inscripciones" className="py-20 px-4 bg-gradient-to-b from-amber-50 to-white scroll-mt-20">
+    <section
+      id="inscripciones"
+      className="py-20 px-4 bg-gradient-to-b from-amber-50 to-white scroll-mt-20"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-blue-950 mb-4">
             Inscripciones
           </h2>
+          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            Inscripción gratuita
+          </div>
           <p className="text-gray-600 max-w-2xl mx-auto mb-6">
-            Complete el formulario para participar en el Pregón Cultural por las Fiestas Patronales Virgen del Carmen 2026
+            Complete el formulario para participar en el Pregón Cultural por las
+            Fiestas Patronales Virgen del Carmen 2026
           </p>
           <Card className="border-amber-200 shadow-sm mb-8">
             <CardContent className="p-6">
@@ -30,7 +58,9 @@ export function RegistrationSection() {
                     </div>
                     <div className="text-left min-w-0">
                       <p className="text-xs text-gray-400">Organiza</p>
-                      <p className="text-sm font-semibold text-gray-800">{ORGANIZER}</p>
+                      <p className="text-sm font-semibold text-gray-800">
+                        {ORGANIZER}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -38,8 +68,10 @@ export function RegistrationSection() {
                       <CalendarDays className="w-4 h-4 text-amber-600" />
                     </div>
                     <div className="text-left min-w-0">
-                      <p className="text-xs text-gray-400">Fecha</p>
-                      <p className="text-sm font-semibold text-gray-800">{EVENT_DATE}</p>
+                      <p className="text-xs text-gray-400">Fecha del evento</p>
+                      <p className="text-sm font-semibold text-gray-800">
+                        {EVENT_DATE}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -48,20 +80,29 @@ export function RegistrationSection() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-amber-100 shrink-0">
-                      <Clock className="w-4 h-4 text-amber-600" />
-                    </div>
-                    <div className="text-left min-w-0">
-                      <p className="text-xs text-gray-400">Hora</p>
-                      <p className="text-sm font-semibold text-gray-800">{EVENT_TIME}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-100 shrink-0">
                       <Phone className="w-4 h-4 text-amber-600" />
                     </div>
                     <div className="text-left min-w-0">
                       <p className="text-xs text-gray-400">Contacto</p>
-                      <a href={`https://wa.me/${CONTACT_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-600 hover:text-blue-800">{CONTACT_PHONE}</a>
+                      <a
+                        href={`https://wa.me/${CONTACT_WHATSAPP}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold text-blue-600 hover:text-blue-800"
+                      >
+                        {CONTACT_PHONE}
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-amber-100 shrink-0">
+                      <Clock className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <div className="text-left min-w-0">
+                      <p className="text-xs text-gray-400">Hora de inicio</p>
+                      <p className="text-sm font-semibold text-gray-800">
+                        {EVENT_TIME}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -82,14 +123,18 @@ export function RegistrationSection() {
                       <div className="h-[24px] flex items-center">
                         <div>
                           <p className="text-xs text-gray-400">Salida</p>
-                          <p className="text-sm font-semibold text-gray-800">{EVENT_START_LOCATION}</p>
+                          <p className="text-sm font-semibold text-gray-800">
+                            {EVENT_START_LOCATION}
+                          </p>
                         </div>
                       </div>
                       <div className="h-[48px]" />
                       <div className="h-[24px] flex items-center">
                         <div>
                           <p className="text-xs text-gray-400">Llegada</p>
-                          <p className="text-sm font-semibold text-gray-800">{EVENT_END_LOCATION}</p>
+                          <p className="text-sm font-semibold text-gray-800">
+                            {EVENT_END_LOCATION}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -112,17 +157,33 @@ export function RegistrationSection() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6 space-y-4">
-                {(Object.entries(CATEGORIES) as [string, typeof CATEGORIES.danza_ninos][]).map(([key, category]) => (
+                {(
+                  Object.entries(CATEGORIES) as [
+                    string,
+                    typeof CATEGORIES.danza_ninos,
+                  ][]
+                ).map(([key, category]) => (
                   <div key={key}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-semibold text-gray-800">{category.label}</span>
-                      <Badge variant="warning" className="text-xs">{key === 'danza_ninos' ? 'Infantil' : 'General'}</Badge>
+                      <span className="text-sm font-semibold text-gray-800">
+                        {category.label}
+                      </span>
+                      <Badge variant="warning" className="text-xs">
+                        {key === "danza_ninos" ? "Infantil" : "General"}
+                      </Badge>
                     </div>
                     <div className="space-y-1">
                       {category.prizes.map((prize, i) => (
-                        <div key={prize.place} className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-amber-50">
-                          <span className="text-xs text-gray-600">{prize.place}</span>
-                          <span className="text-sm font-bold text-blue-900">{prize.amount}</span>
+                        <div
+                          key={prize.place}
+                          className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-amber-50"
+                        >
+                          <span className="text-xs text-gray-600">
+                            {prize.place}
+                          </span>
+                          <span className="text-sm font-bold text-blue-900">
+                            {prize.amount}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -133,8 +194,12 @@ export function RegistrationSection() {
                 ))}
                 <div className="border-t border-amber-200 pt-3">
                   <div className="flex items-center justify-between py-1.5 px-2 rounded bg-amber-50">
-                    <span className="text-sm font-semibold text-gray-800">Carro Alegórico</span>
-                    <span className="text-sm font-bold text-blue-900">USD 100</span>
+                    <span className="text-sm font-semibold text-gray-800">
+                      Carro Alegórico
+                    </span>
+                    <span className="text-sm font-bold text-blue-900">
+                      USD 100
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -156,7 +221,10 @@ export function RegistrationSection() {
                   </h4>
                   <div className="space-y-1.5">
                     {DANCE_CRITERIA.map((criterion, i) => (
-                      <div key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                      <div
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-gray-700"
+                      >
                         <Palette className="w-3.5 h-3.5 text-blue-500 mt-0.5 shrink-0" />
                         {criterion}
                       </div>
@@ -170,7 +238,10 @@ export function RegistrationSection() {
                   </h4>
                   <div className="space-y-1.5">
                     {FLOAT_CRITERIA.map((criterion, i) => (
-                      <div key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                      <div
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-gray-700"
+                      >
                         <Lightbulb className="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" />
                         {criterion}
                       </div>
